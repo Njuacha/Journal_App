@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--TODO 2: Replace these colors with more symbolic colors-->
+    <color name="colorJoyful">#FF4081</color>
+    <color name="colorSad">@android:color/darker_gray</color>
+    <color name="colorNormal">#00A111</color>
+
+    <color name="colorJoyfulLight">#FF4081</color>
+    <color name="colorSadLight">@android:color/darker_gray</color>
+    <color name="colorNormalLight">#00A111</color>
+
+</resources>
