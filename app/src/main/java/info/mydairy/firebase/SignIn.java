@@ -62,7 +62,7 @@ public class SignIn extends AppCompatActivity {
             signOut();
         }
 
-        mLoading = findViewById(R.id.progressBar1);
+        mLoading = (ProgressBar) findViewById(R.id.progressBar1);
     }
 
     private void signIn() {
