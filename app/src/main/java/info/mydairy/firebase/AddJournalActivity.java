@@ -76,8 +76,6 @@ public class AddJournalActivity extends AppCompatActivity {
 
         // Gets data from addJournalview model and populates the UI
         setUpDataInViews();
-
-
     }
 
     @Override
