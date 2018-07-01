@@ -22,6 +22,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/layout_feeling"
         android:gravity="start" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_feeling"
+        android:gravity="start" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +52,7 @@
             app:layout_constraintBottom_toTopOf="@id/radioGroup"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:text="Select a feeling"
+            android:text="@string/select_a_feeling"
             android:textColor="@android:color/primary_text_light" />
 
         <RadioGroup
@@ -60,7 +72,7 @@
                 android:layout_weight="1"
                 android:background="@color/colorJoyful"
                 android:checked="true"
-                android:text="Happy"
+                android:text="@string/happy"
                 android:theme="@style/WhiteRadioButton" />
 
             <RadioButton
@@ -69,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorNormal"
-                android:text="Normal"
+                android:text="@string/normal"
                 android:theme="@style/WhiteRadioButton" />
 
             <RadioButton
@@ -78,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorSad"
-                android:text="Sad"
+                android:text="@string/sad"
                 android:theme="@style/WhiteRadioButton" />
 
         </RadioGroup>

@@ -1,39 +1,47 @@
 package info.mydairy.firebase;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
+import info.mydairy.firebase.database.JournalDatabase;
+import info.mydairy.firebase.database.JournalEntry;
 import info.mydairy.firebase.database.JournalSummaryEntry;
 
 public class JournalActivity extends AppCompatActivity implements JournalAdapter.ItemClickListener{
 
-    // Member variables for recycler view and adapter
-    private RecyclerView mRecyclerView;
+    // An extra to be used for signing out
+    public static String EXTRA_SIGN_OUT = "sign out";
     private JournalAdapter mAdapter;
+    private JournalDatabase mdB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, SignIn.class));
+            finish();
+        }
+        setContentView(R.layout.ativity_journal);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +51,7 @@ public class JournalActivity extends AppCompatActivity implements JournalAdapter
         });
 
         // Set the recyclerView to the corresponding view
-        mRecyclerView = findViewById(R.id.recycler_view_journal_entries);
+        RecyclerView mRecyclerView = findViewById(R.id.recycler_view_journal_entries);
 
         // Set the layout for the RecyclerView to be a linear layout, which measures and
         // positions items within a RecyclerView into a linear list
@@ -53,6 +61,32 @@ public class JournalActivity extends AppCompatActivity implements JournalAdapter
         mAdapter = new JournalAdapter(this,this);
         mRecyclerView.setAdapter(mAdapter);
 
+        // implements the swipe to delete
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Get the position of item selected
+                        int position = viewHolder.getAdapterPosition();
+                        // Get the list of current items in adapter
+                        List<JournalSummaryEntry> jSummaryEntries = mAdapter.getmJournalSummaryEntries();
+                        // Use the position of item to get item selected from list
+                        JournalSummaryEntry jSummaryEntry = jSummaryEntries.get(position);
+                        // Get the item's id and use it to delete the item in the database
+                        mdB.journalDoa().deleteJournalEntryWithId(jSummaryEntry.getId());
+                    }
+                });
+            }
+        }).attachToRecyclerView(mRecyclerView);
+
+        mdB = JournalDatabase.getsInstance(getApplicationContext());
         setUpViewModel();
     }
 
@@ -73,5 +107,26 @@ public class JournalActivity extends AppCompatActivity implements JournalAdapter
                 mAdapter.setJournalEntries(journalSummaryEntries);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 1, 1, "Sign Out");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 1) {
+            signOut();
+        }
+        return true;
+    }
+
+    private void signOut() {
+        Intent signOutIntent = new Intent(JournalActivity.this, SignIn.class);
+        signOutIntent.putExtra(EXTRA_SIGN_OUT, true);
+        startActivity(signOutIntent);
+        finish();
     }
 }

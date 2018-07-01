@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_happy_color_option_labels">
+        <item>"pref_happy_color_labl_1"</item>
+    </array>
+
+</resources>

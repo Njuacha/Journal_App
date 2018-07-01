@@ -1,9 +1,5 @@
 package info.mydairy.firebase;
 
-/**
- * Created by hubert on 6/27/18.
- */
-
 
 import android.os.Handler;
 import android.os.Looper;

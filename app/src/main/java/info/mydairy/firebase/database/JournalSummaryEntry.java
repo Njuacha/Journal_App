@@ -7,10 +7,10 @@ import java.util.Date;
  */
 
 public class JournalSummaryEntry {
-    int id;
-    String textSummary;
-    Date date;
-    int feeling;
+    private int id;
+    private String textSummary;
+    private Date date;
+    private int feeling;
 
     public JournalSummaryEntry(int id, String textSummary, Date date, int feeling) {
         this.id = id;

@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".JournalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,17 +25,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".JournalActivity"
-            android:label="@string/title_activity_journal"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".AddJournalActivity"
             android:label="@string/title_activity_add_journal"
             android:parentActivityName=".JournalActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="info.mydairy.firebase.JournalActivity" />
+        </activity>
+        <activity android:name=".SignIn">
+
         </activity>
     </application>
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,19 +28,19 @@ public class AddJournalActivity extends AppCompatActivity {
     // Constant for default journal id to be used when not in update mode
     private static final int DEFAULT_JOURNAL_ID = -1;
     // Extra for the journal ID to be received after rotation
-    public static final String INSTANCE_JOURNAL_ID = "instanceJournalId";
+    private static final String INSTANCE_JOURNAL_ID = "instanceJournalId";
 
 
-    public static final int FEELING_HAPPY = 1;
-    public static final int FEELING_NORMAL = 2;
-    public static final int FEELING_SAD = 3;
+    private static final int FEELING_HAPPY = 1;
+    private static final int FEELING_NORMAL = 2;
+    private static final int FEELING_SAD = 3;
     private static final String EXTRA_READ_MODE = "readModeExtra";
     private static final String EXTRA_FEELING = "feelingExtra";
     private static final String EXTRA_JTEXT = "journalTextExtra";
     // fields to obtain text and feeling respectively
-    EditText mEditText;
-    TextView mTextView;
-    RadioGroup mRadioGroup;
+    private EditText mEditText;
+    private TextView mTextView;
+    private RadioGroup mRadioGroup;
 
 
     private int mJournalId = DEFAULT_JOURNAL_ID;
@@ -58,7 +59,12 @@ public class AddJournalActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = this.getSupportActionBar();
+
+        // Set the action bar back button to look like an up button
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         initViews();
 
@@ -143,7 +149,7 @@ public class AddJournalActivity extends AppCompatActivity {
         mTextView = findViewById(R.id.textView);
         mRadioGroup = findViewById(R.id.radioGroup);
 
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab = findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

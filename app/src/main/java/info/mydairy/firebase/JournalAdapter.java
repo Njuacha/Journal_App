@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import info.mydairy.firebase.database.JournalEntry;
 import info.mydairy.firebase.database.JournalSummaryEntry;
 
 /**
@@ -73,7 +74,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
         String createdAt = dateFormat.format(journalSummaryEntry.getDate());
 
         // Set values
-        holder.textSummaryView.setText(textSummary);
+        holder.textSummaryView.setText(textSummary.concat("..."));
         holder.dateCreatedView.setText(createdAt);
 
         // Programmatically set color of feelingCircle in item view

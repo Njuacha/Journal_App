@@ -15,12 +15,13 @@ import java.util.Date;
 public class JournalEntry {
 
     @PrimaryKey(autoGenerate = true)
+    private
     int id;
-    String text;
-    String textSummary;
-    Date date;
+    private String text;
+    private String textSummary;
+    private Date date;
     // Represents the feeling that the writter had when writting text
-    int feeling;
+    private int feeling;
 
     public JournalEntry(int id, String text, Date date, String textSummary, int feeling) {
         this.id = id;

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#c2a597</color>
+    <color name="colorPrimaryDark">#7e6255</color>
+    <color name="colorAccent">#2b1308</color>
 
-    <!--TODO 2: Replace these colors with more symbolic colors-->
-    <color name="colorJoyful">#FF4081</color>
-    <color name="colorSad">@android:color/darker_gray</color>
-    <color name="colorNormal">#00A111</color>
+    <!--Completed 2: Replaced colors with more symbolic colors-->
+    <color name="colorJoyful">#FF6F00</color>
+    <color name="colorSad">#0D47A1</color>
+    <color name="colorNormal">#33691E</color>
 
-    <color name="colorJoyfulLight">#FF4081</color>
-    <color name="colorSadLight">@android:color/darker_gray</color>
-    <color name="colorNormalLight">#00A111</color>
+    <color name="colorJoyfulLight">#FFE57F</color>
+    <color name="colorSadLight">#82B1FF</color>
+    <color name="colorNormalLight">#CCFF90</color>
 
 </resources>

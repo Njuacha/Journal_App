@@ -26,9 +26,9 @@ public interface JournalDoa {
     @Update
     void updateJournalEntry(JournalEntry journalEntry);
 
-    @Delete
-    void deleteJournalEntry(JournalEntry journalEntry);
-
     @Query("SELECT * FROM JournalEntry WHERE id = :id")
     LiveData<JournalEntry> loadAJournalEntryById(int id);
+
+    @Query("DELETE FROM JournalEntry WHERE id = :id")
+    void deleteJournalEntryWithId(int id);
 }

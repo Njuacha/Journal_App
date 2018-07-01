@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "504390274614-0g6hg0gh3i3vl5d1spu5t8bimi76o215.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.mydairy.firebase",
+            "certificate_hash": "295134922731230f6e25067c4a357b16ed77a243"
+          }
+        },
+        {
           "client_id": "504390274614-5kjvfqea5jit35cecod8ihpmc0eae1ju.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504390274614-5kjvfqea5jit35cecod8ihpmc0eae1ju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

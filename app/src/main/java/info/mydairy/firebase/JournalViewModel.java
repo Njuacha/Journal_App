@@ -14,7 +14,7 @@ import info.mydairy.firebase.database.JournalSummaryEntry;
  * View model class that loads all the journal summary entries from database
  */
 
-public class JournalViewModel extends AndroidViewModel {
+class JournalViewModel extends AndroidViewModel {
     private LiveData<List<JournalSummaryEntry>> mJournalSummaryEntries;
 
     public JournalViewModel(@NonNull Application application) {
